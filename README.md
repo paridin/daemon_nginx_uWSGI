@@ -1,22 +1,25 @@
 # Daemon Nginx uWSGI
 ==================
 
-Daemon writing in python language it's developed on a mac osx lion, Nginx build on /usr/local/ and nginx build on a virtualenv
+The daemon were written in python, it was developed on OSX
+*Nginx is compiled on /usr/local/ and uWSGI service installed on virtualenv*
 
-For execute you need change some paths to find nginx and uWSGI services.
+You have to change some paths in the script to execute it, also to find Nginx and uWSGI services in your system unless you have the same paths.
 
-***Note: you need have installed psutil if you don't have installed it***
-
-run the command 
+***Note: psutil must be installed, if you don't have it execute the command***
 
 ```bash
 sudo easy_install psutil
 ```
 
 
-How to use the script after install locate it into your root project /path/your/projectName/, the configuration for uswgi will be [projectName]_uwsgi.ini and this configuration will be locate on /path/your/projectName/conf
+# How to use it:
+
+You must put ``start_server.py`` in your root project ``/path/your/projectName/``
+uWSGI configuration must have the nomenclature in the filename like ``[projectName]_uwsgi.ini`` and this configuration must be located on ``/path/your/projectName/conf`` the conf directory does not exist by default so you need to create it.
 
 * **projectName_uwsgi.ini**
+It is located on ``/path/your/projectName/conf``
 
 ```bash
 [uwsgi]
@@ -34,6 +37,7 @@ module = django.core.handlers.wsgi:WSGIHandler()
 ```
 
 * **projectName_nginx.conf**
+It is located on ``/path/your/projectName/conf``
 
 ```bash
 # projectName_nginx.conf
@@ -73,7 +77,7 @@ server {
 }
 ```
 * **nginx.conf**
-*my file is locate on /usr/local/conf you need has created /usr/local/conf/site-enabled directory*
+*It is located on /usr/local/conf you must create site-enabled directory on the path if you don't have it*
 
 ```bash
 worker_processes 1;
@@ -123,3 +127,6 @@ http {
 }
 ```
 
+***Note: you can use /path/your/projectName/conf/projectName_nginx.conf to /usr/local/conf/sites-enabled/***
+
+```sudo ln -s /path/your/projectName/conf/projectName_nginx.conf /usr/local/conf/sites-enabled/``
