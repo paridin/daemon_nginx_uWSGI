@@ -1,19 +1,24 @@
-daemon_nginx_uWSGI
+# Daemon Nginx uWSGI
 ==================
 
 Daemon writing in python language it's developed on a mac osx lion, Nginx build on /usr/local/ and nginx build on a virtualenv
 
 For execute you need change some paths to find nginx and uWSGI services.
 
-Note: you need have installed psutil if you don't have installed it 
+***Note: you need have installed psutil if you don't have installed it***
 
 run the command 
+
+```bash
 sudo easy_install psutil
+```
+
 
 How to use the script after install locate it into your root project /path/your/projectName/, the configuration for uswgi will be [projectName]_uwsgi.ini and this configuration will be locate on /path/your/projectName/conf
 
-example projectName_uwsgi.ini
+* **projectName_uwsgi.ini**
 
+```bash
 [uwsgi]
 chdir=/path/your/projectName
 socket=:8000
@@ -26,11 +31,12 @@ max-requests=5000
 daemonize=/var/log/uwsgi/projectName.log
 env = DJANGO_SETTINGS_MODULE=ProjectName.settings
 module = django.core.handlers.wsgi:WSGIHandler()
+```
 
-example projectName_nginx.conf
+* **projectName_nginx.conf**
 
-# OS_Paridin_nginx.conf
-
+```bash
+# projectName_nginx.conf
 # the upstream component nginx needs to connect to
 upstream django {
     server unix:///path/your/projectName/conf/projectName.sock; # for a file socket
@@ -65,11 +71,11 @@ server {
         include     uwsgi_params; # the uwsgi_params file you installed
         }
 }
+```
+* **nginx.conf**
+*my file is locate on /usr/local/conf you need has created /usr/local/conf/site-enabled directory*
 
-example nginx.conf my file is locate on /usr/local/conf
-you need has created /usr/local/conf/site-enabled directory 
-
-
+```bash
 worker_processes 1;
 
 error_log /var/log/nginx/error_log info;
@@ -115,5 +121,5 @@ http {
 
         include sites-enabled/*.conf;
 }
-
+```
 
