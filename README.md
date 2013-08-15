@@ -2,7 +2,8 @@
 ==================
 
 The daemon were written in python, it was developed on OSX
-*Nginx is compiled on /usr/local/ and uWSGI service installed on virtualenv*
+
+*Nginx is compiled on ``/usr/local/`` and uWSGI service installed on ``virtualenv``*
 
 You have to change some paths in the script to execute it, also to find Nginx and uWSGI services in your system unless you have the same paths.
 
