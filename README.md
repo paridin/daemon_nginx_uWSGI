@@ -130,4 +130,4 @@ http {
 
 ***Note: you can use /path/your/projectName/conf/projectName_nginx.conf to /usr/local/conf/sites-enabled/***
 
-```sudo ln -s /path/your/projectName/conf/projectName_nginx.conf /usr/local/conf/sites-enabled/``
+```sudo ln -s /path/your/projectName/conf/projectName_nginx.conf /usr/local/conf/sites-enabled/```
